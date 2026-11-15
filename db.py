@@ -5,8 +5,13 @@ import sqlite3
 from datetime import date, datetime, timedelta
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-DB_PATH = os.environ.get("HQOS_DB", os.path.join(BASE_DIR, "data", "hospital_qms.db"))
 
+DB_PATH = os.environ.get(
+    "HQOS_DB",
+    os.path.join(BASE_DIR, "data", "hospital_qms.db")
+)
+
+os.makedirs(os.path.dirname(DB_PATH), exist_ok=True)
 
 def connect():
     conn = sqlite3.connect(DB_PATH)
